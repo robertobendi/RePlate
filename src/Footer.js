@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <header className={classes.navigation}>
+    <footer className={classes.navigation}>
       <nav class="navbar sticky-top navbar-expand-lg">
         <div class="collapse navbar-collapse d-flex">
           <ul>
@@ -13,15 +13,18 @@ function Footer() {
               <div className={classes.logo}>RePlate-Footer</div>
             </li>
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/page1">Page1</Link>
+              <h5>
+                <br />
+                2022 RePlate is a project created by{" "}
+                <a href="https://github.com/robertobendi/">
+                  Roberto Bendinelli
+                </a>
+              </h5>
             </li>
           </ul>
         </div>
       </nav>
-    </header>
+    </footer>
   );
 }
 
