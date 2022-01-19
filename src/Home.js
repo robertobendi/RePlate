@@ -49,7 +49,27 @@ function Home() {
               <br />
             </li>
           </ul>
-          <h2>UI Components:</h2>
+          <div className={css.card}>
+            <h2>UI Components:</h2>
+            <ul>
+              <li>
+                css.button <br />
+                <button className={css.button}>button</button>
+              </li>
+              <li>
+                css.buttonwhite <br />
+                <button className={css.buttonwhite}>buttonwhite</button>
+              </li>
+              <li>
+                css.input <br />
+                <input className={css.input}></input>
+              </li>
+              <li>
+              css.card <br />
+              (this card :P)
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </body>

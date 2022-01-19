@@ -8,9 +8,21 @@
     padding: 4em;
 }
 
+.card{
+    background-color: rgb(27, 27, 27);
+    border: none;
+    color: white;
+    border-radius: .5em;
+    padding: 2em;
+}
+
 .center{
     justify-content: center;
     text-align: center;
+}
+
+.logo{
+    padding: 2em;
 }
 
 .backgrounddiv{
@@ -19,6 +31,35 @@
     background-size: cover;
 }
 
-.logo{
-    padding: 2em;
+.button{
+    background-color: rgb(14, 14, 14);
+    border: none;
+    color: white;
+    border-radius: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top:  .5em;
+    padding-bottom: .5em;
+}
+
+.buttonwhite{
+    background-color: white;
+    border: none;
+    color: rgb(14, 14, 14);
+    border-radius: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top:  .5em;
+    padding-bottom: .5em;
+}
+
+.input{
+    background-color: rgb(14, 14, 14);
+    color:white;
+    border: none;
+    border-radius: .5em;
+    padding-top:  .5em;
+    padding-bottom: .5em;
+    padding-left: .5em;
+    padding-right: .5em;
 }
