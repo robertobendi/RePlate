@@ -17,6 +17,9 @@ nav {
     font-size: 1em;
     font-weight: 600;
   }
+  .logoimage{
+    width: 1.5em;
+  }
   
   .logoFooter{
     padding-left: 1em;

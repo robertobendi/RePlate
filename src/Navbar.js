@@ -3,12 +3,18 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import classes from "./Navigation.module.css";
 import { Link } from "react-router-dom";
 
+//demo content
+import logo from "./img/logo.png";
+
 function Navbar() {
   return (
     <header className={classes.navigation}>
       <nav class="navbar sticky-top navbar-expand-lg">
         <div class="collapse navbar-collapse d-flex">
           <ul>
+            <li>
+              <img src={logo} className={classes.logoimage}></img>
+            </li>
             <li>
               <div className={classes.logo}>RePlate-navbar</div>
             </li>
