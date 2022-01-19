@@ -1,13 +1,22 @@
 .body {
   background-color: #161616;
-  padding: 4em;
   color: white;
   font-size: 1.5em;
+}
+
+.container{
+    padding: 4em;
 }
 
 .center{
     justify-content: center;
     text-align: center;
+}
+
+.backgrounddiv{
+    background-image: url("./img/wp.jpg");
+    background-position: center;
+    background-size: cover;
 }
 
 .logo{
