@@ -19,10 +19,10 @@ function Navbar() {
               <div className={classes.logo}>RePlate-navbar</div>
             </li>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" className={classes.navlink}>Home</Link>
             </li>
             <li>
-              <Link to="/page1">Page1</Link>
+              <Link to="/page1" className={classes.navlink}>Page1</Link>
             </li>
           </ul>
         </div>

@@ -39,3 +39,9 @@ nav {
   .navigation li {
     margin-left: 3rem;
   }
+
+  .navlink {
+    color: white;
+    text-decoration: none;
+  }
+  
