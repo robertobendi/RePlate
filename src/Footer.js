@@ -1,29 +1,23 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import classes from "./Navigation.module.css";
-import { Link } from "react-router-dom";
-
 function Footer() {
   return (
-    <footer className={classes.navigation}>
-      <nav class="navbar sticky-top navbar-expand-lg">
-        <div class="collapse navbar-collapse d-flex">
-          <ul>
-            <li>
-              <div className={classes.logo}>RePlate-Footer</div>
-            </li>
-            <li>
-              <h5>
-                <br />
-                2022 RePlate is a project created by{" "}
-                <a href="https://github.com/robertobendi/">
-                  Roberto Bendinelli
-                </a>
-              </h5>
-            </li>
-          </ul>
+    <footer className="bg-white border-t border-gray-100">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="py-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-gray-600 text-sm">
+            © {new Date().getFullYear()} RePlate. All rights reserved.
+          </div>
+          <div className="mt-4 md:mt-0">
+            <a
+              href="https://github.com/yourusername"
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
-      </nav>
+      </div>
     </footer>
   );
 }

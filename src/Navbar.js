@@ -1,33 +1,62 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import classes from "./Navigation.module.css";
 import { Link } from "react-router-dom";
-
-//demo content
-import logo from "./img/logo.png";
+import { useState } from "react";
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className={classes.navigation}>
-      <nav class="navbar sticky-top navbar-expand-lg">
-        <div class="collapse navbar-collapse d-flex">
-          <ul>
-            <li>
-              <img src={logo} className={classes.logoimage}></img>
-            </li>
-            <li>
-              <div className={classes.logo}>RePlate-navbar</div>
-            </li>
-            <li>
-              <Link to="/" className={classes.navlink}>Home</Link>
-            </li>
-            <li>
-              <Link to="/page1" className={classes.navlink}>Page1</Link>
-            </li>
-          </ul>
+    <nav className="bg-white border-b border-gray-100">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="font-semibold text-lg text-gray-900">
+            RePlate
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex space-x-8">
+            <Link to="/" className="text-gray-600 hover:text-gray-900">
+              Home
+            </Link>
+            <Link to="/page1" className="text-gray-600 hover:text-gray-900">
+              Page 1
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden rounded-md p-2 text-gray-400 hover:text-gray-500"
+          >
+            <span className="sr-only">Open menu</span>
+            {isOpen ? (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            )}
+          </button>
         </div>
-      </nav>
-    </header>
+
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden py-4">
+            <div className="flex flex-col space-y-4">
+              <Link to="/" className="text-gray-600 hover:text-gray-900" onClick={() => setIsOpen(false)}>
+                Home
+              </Link>
+              <Link to="/page1" className="text-gray-600 hover:text-gray-900" onClick={() => setIsOpen(false)}>
+                Page 1
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }
+
 export default Navbar;
