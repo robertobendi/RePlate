@@ -1,4 +1,4 @@
-import websiteInfo from './websiteInfo.json';
+import websiteInfo from './../../utils/websiteInfo';
 
 function Footer() {
   const { theme, site } = websiteInfo;

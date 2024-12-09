@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import websiteInfo from './websiteInfo.json';
-import logo from './img/logo.png';
+import websiteInfo from './../utils/websiteInfo';
+import logo from './../assets/img/logo.png';
 
 function Home() {
   const [hovered, setHovered] = useState(null);

@@ -1,5 +1,4 @@
-export default
-{
+export default {
   "theme": {
     "_colorsDocs": "Core color palette for consistent styling",
     "colors": {
