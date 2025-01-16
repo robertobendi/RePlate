@@ -1,8 +1,6 @@
 import websiteInfo from '../utils/websiteInfo';
 
 function Page1() {
-  const { theme } = websiteInfo;
-
   const importFixerCode = `const fixer = new SmartImportFixer('./src');
 
 // Maps file locations
@@ -20,28 +18,24 @@ fixImports(filePath) {
 }`;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme.colors.background }}>
+    <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto p-4 md:p-8 lg:p-12">
-        <h1 className="text-3xl font-semibold mb-8" style={{ color: theme.colors.text.primary }}>
+        <h1 className="text-3xl font-semibold mb-8 text-text-primary">
           Project Tools
         </h1>
 
         {/* Import Fixer Section */}
-        <div className="mb-12 p-8" style={{ 
-          backgroundColor: theme.colors.surface,
-          borderRadius: theme.borderRadius.lg,
-          boxShadow: theme.style.shadows.lg
-        }}>
-          <h2 className="text-2xl font-medium mb-6" style={{ color: theme.colors.text.primary }}>
+        <div className="mb-12 p-8 bg-surface rounded-lg shadow-lg">
+          <h2 className="text-2xl font-medium mb-6 text-text-primary">
             Import Fixer Tool
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
-              <h3 className="text-xl mb-4" style={{ color: theme.colors.text.accent }}>
+              <h3 className="text-xl mb-4 text-text-accent">
                 What it does
               </h3>
-              <ul className="space-y-2" style={{ color: theme.colors.text.secondary }}>
+              <ul className="space-y-2 text-text-secondary">
                 <li>• Automatically fixes import paths</li>
                 <li>• Handles JavaScript and asset files</li>
                 <li>• Updates relative paths based on file location</li>
@@ -50,13 +44,13 @@ fixImports(filePath) {
             </div>
             
             <div>
-              <h3 className="text-xl mb-4" style={{ color: theme.colors.text.accent }}>
+              <h3 className="text-xl mb-4 text-text-accent">
                 How to use
               </h3>
-              <div style={{ color: theme.colors.text.secondary }}>
+              <div className="text-text-secondary">
                 <p className="mb-4">1. Place in <code>scripts/fix-imports.js</code></p>
                 <p>2. Run:</p>
-                <pre className="p-3 mt-2 rounded" style={{ backgroundColor: theme.colors.background }}>
+                <pre className="p-3 mt-2 rounded bg-background">
                   node scripts/fix-imports.js
                 </pre>
               </div>
@@ -64,14 +58,10 @@ fixImports(filePath) {
           </div>
 
           <div>
-            <h3 className="text-xl mb-4" style={{ color: theme.colors.text.accent }}>
+            <h3 className="text-xl mb-4 text-text-accent">
               Code Overview
             </h3>
-            <pre className="p-4 rounded-lg overflow-x-auto" style={{ 
-              backgroundColor: theme.colors.background,
-              color: theme.colors.text.primary,
-              fontSize: theme.font.sizes.sm
-            }}>
+            <pre className="p-4 rounded-lg overflow-x-auto bg-background text-text-primary text-sm">
               <code>{importFixerCode}</code>
             </pre>
           </div>
@@ -79,27 +69,21 @@ fixImports(filePath) {
 
         {/* Theme Tutorial Section */}
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="shadow-lg p-6" style={{ 
-            backgroundColor: theme.colors.surface, 
-            borderRadius: theme.borderRadius.default 
-          }}>
-            <h2 className="text-xl font-medium mb-4" style={{ color: theme.colors.text.primary }}>
+          <div className="shadow-lg p-6 bg-surface rounded">
+            <h2 className="text-xl font-medium mb-4 text-text-primary">
               Theme System
             </h2>
-            <p className="leading-relaxed" style={{ color: theme.colors.text.secondary }}>
+            <p className="leading-relaxed text-text-secondary">
               RePlate uses a central theme configuration in websiteInfo.js. Import and destructure
               the theme object to access colors, typography, spacing, and other design tokens.
             </p>
           </div>
 
-          <div className="shadow-lg p-6" style={{ 
-            backgroundColor: theme.colors.surface, 
-            borderRadius: theme.borderRadius.default 
-          }}>
-            <h2 className="text-xl font-medium mb-4" style={{ color: theme.colors.text.primary }}>
+          <div className="shadow-lg p-6 bg-surface rounded">
+            <h2 className="text-xl font-medium mb-4 text-text-primary">
               Project Structure
             </h2>
-            <p className="leading-relaxed" style={{ color: theme.colors.text.secondary }}>
+            <p className="leading-relaxed text-text-secondary">
               Components are organized by feature and layout. Assets and styles have dedicated
               directories. Utils contain shared code and configurations.
             </p>
