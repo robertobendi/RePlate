@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/replate-website/static/css/main.3c9c12a1.css",
+    "main.js": "/replate-website/static/js/main.e3d4d014.js",
+    "static/media/logo.png": "/replate-website/static/media/logo.7c0acd080db0d2688a7b.png",
+    "index.html": "/replate-website/index.html",
+    "main.3c9c12a1.css.map": "/replate-website/static/css/main.3c9c12a1.css.map",
+    "main.e3d4d014.js.map": "/replate-website/static/js/main.e3d4d014.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c9c12a1.css",
+    "static/js/main.e3d4d014.js"
+  ]
+}
