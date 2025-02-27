@@ -1,14 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';  // Make sure this line exists
+import './index.css';
 import App from './App';
 
-ReactDOM.render(
+// Get the root element
+const container = document.getElementById('root');
+
+// Create a root
+const root = createRoot(container);
+
+// Initial render with simpler BrowserRouter (without basename)
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
