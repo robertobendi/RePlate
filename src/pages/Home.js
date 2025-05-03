@@ -1,137 +1,80 @@
-import { useState } from 'react';
-import websiteInfo from './../utils/websiteInfo';
-import logo from './../assets/img/logo.png';
+import { memo } from 'react';
+import Button from '../components/ui/Button';
+import { FiZap, FiFeather, FiMoon, FiSmartphone } from 'react-icons/fi';
+import logo from '../assets/img/logo.png';
 
-function Home() {
-  const [hovered, setHovered] = useState(null);
-  const { site } = websiteInfo;
+const features = [
+  {
+    title: 'Modern Stack',
+    description: 'Built with React 18, Vite, and React Router v6 for lightning-fast performance',
+    icon: <FiZap className="text-blue-400 text-3xl mb-2" />
+  },
+  {
+    title: 'Tailwind CSS',
+    description: 'Utility-first CSS framework with custom animations and transitions',
+    icon: <FiFeather className="text-blue-400 text-3xl mb-2" />
+  },
+  {
+    title: 'Dark Theme',
+    description: 'Beautiful, modern dark palette for your next app',
+    icon: <FiMoon className="text-blue-400 text-3xl mb-2" />
+  },
+  {
+    title: 'Responsive Design',
+    description: 'Fully responsive layouts that work on all devices',
+    icon: <FiSmartphone className="text-blue-400 text-3xl mb-2" />
+  }
+];
 
-  const features = [
-    {
-      title: 'Modern Stack',
-      description: 'Built with React 18, Vite, and React Router v6 for lightning-fast performance and seamless navigation',
-      icon: (
-        <svg className="w-8 h-8 text-text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Tailwind CSS',
-      description: 'Utility-first CSS framework enabling rapid UI development with beautiful, responsive designs',
-      icon: (
-        <svg className="w-8 h-8 text-text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-        </svg>
-      )
-    },
-    {
-      title: 'Vite Powered',
-      description: 'Super-fast build tool providing instant server start and optimized production builds',
-      icon: (
-        <svg className="w-8 h-8 text-text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Clean Structure',
-      description: 'Organized component architecture ensuring scalability and maintainable code structure',
-      icon: (
-        <svg className="w-8 h-8 text-text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      )
-    }
-  ];
-
-  const glowStyle = {
-    filter: 'drop-shadow(0 0 10px rgba(77, 142, 255, 0.5))',
-    WebkitFilter: 'drop-shadow(0 0 10px rgba(77, 142, 255, 0.5))'
-  };
-
-  return (
-    <div className="min-h-screen bg-background font-sans">
-      {/* Hero Section */}
-      <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 bg-gradient-radial from-surface to-background transition-all duration-DEFAULT">
-        <div className="max-w-5xl mx-auto text-center">
-          <img src={logo} alt="Logo" className="h-32 w-auto mx-auto mb-12 animate-pulse" />
-
-          <p className="text-text-secondary text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-            {site.description} Now powered by Vite and React 18 for even faster development and better performance.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <a 
-              href="https://github.com/robertobendi/RePlate"
-              className="inline-block px-12 py-4 border-2 border-text-accent text-text-accent rounded-full shadow-accent transition-all duration-DEFAULT transform hover:scale-105 hover:shadow-2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on GitHub
-            </a>
-            <a 
-              href="https://vitejs.dev"
-              className="inline-block px-12 py-4 bg-text-accent text-white rounded-full shadow-accent transition-all duration-DEFAULT transform hover:scale-105 hover:shadow-2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn about Vite
-            </a>
-          </div>
+const Home = memo(() => (
+  <div className="min-h-screen">
+    {/* Hero Section */}
+    <section className="hero bg-gradient-to-br from-blue-900 via-gray-900 to-purple-900 relative overflow-hidden flex flex-col items-center justify-center text-center">
+      <div className="container flex flex-col items-center justify-center text-center relative z-10">
+        <img src={logo} alt="RePlate Logo" className="mx-auto h-20 w-auto mb-6 drop-shadow-lg" />
+        <h1 className="hero-title mb-6">
+          Welcome to <span className="text-blue-400">RePlate</span>
+        </h1>
+        <p className="hero-desc max-w-2xl mx-auto">
+          A modern React template with Tailwind CSS, featuring a beautiful dark theme and a powerful component system.
+        </p>
+        <div className="flex gap-4 justify-center mt-6">
+          <Button className="btn-primary" href="https://github.com/robertobendi/RePlate">View on GitHub</Button>
         </div>
       </div>
+      {/* subtle gradient shapes */}
+      <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-700 opacity-20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-purple-700 opacity-20 rounded-full blur-3xl" />
+    </section>
 
-      {/* Features Section */}
-      <div className="max-w-6xl mx-auto p-8 md:p-16">
-        <h2 className="text-3xl font-bold text-text-primary text-center mb-12">Upgraded Features</h2>
-        <div className="grid md:grid-cols-2 gap-10">
+    {/* Features Section */}
+    <section className="section">
+      <div className="container">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-surface rounded-lg p-8 shadow-lg transition-all duration-DEFAULT border border-opacity-20 border-border-primary transform hover:-translate-y-2 hover:shadow-2xl"
-              onMouseEnter={() => setHovered(index)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div className="bg-background p-4 rounded mb-6 w-fit shadow-md">
-                {feature.icon}
-              </div>
-              <h3 className="text-text-primary text-2xl font-semibold mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-text-secondary leading-relaxed">
-                {feature.description}
-              </p>
+            <div key={index} className="card bg-gray-800/80 backdrop-blur-md border border-gray-700 hover:shadow-xl transition duration-200 cursor-pointer flex flex-col items-center text-center">
+              <div className="flex justify-center">{feature.icon}</div>
+              <h3 className="card-title text-blue-400 mb-2 text-center">{feature.title}</h3>
+              <p className="card-desc text-center">{feature.description}</p>
             </div>
           ))}
         </div>
       </div>
+    </section>
 
-      {/* Stats Section */}
-      <div className="bg-gradient-to-br from-surface to-background py-24">
-        <div className="max-w-5xl mx-auto p-4 md:p-8">
-          <div className="grid md:grid-cols-3 gap-12 text-center">
-            {[
-              { value: '100%', label: 'Customizable' },
-              { value: '~90%', label: 'Faster Builds with Vite' },
-              { value: 'React 18', label: 'Modern Features' }
-            ].map((stat) => (
-              <div key={stat.value} className="relative">
-                <div 
-                  className="text-text-accent text-5xl font-bold mb-2 rounded-lg py-4"
-                  style={glowStyle}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-text-secondary">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    {/* CTA Section */}
+    <section className="section bg-gray-900/90 backdrop-blur-md text-center">
+      <div className="container">
+        <h2 className="text-3xl font-bold mb-4 text-white">Ready to Get Started?</h2>
+        <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          Clone the template and start building your next project with modern tools and best practices.
+        </p>
+        <Button className="btn-outline" href="https://github.com/robertobendi/RePlate">View on GitHub</Button>
       </div>
-    </div>
-  );
-}
+    </section>
+  </div>
+));
+
+Home.displayName = 'Home';
 
 export default Home;

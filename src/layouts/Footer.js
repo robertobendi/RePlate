@@ -1,14 +1,16 @@
-import websiteInfo from './../../utils/websiteInfo';
+import { memo } from 'react';
+import config from '../lib/config';
 
-function Footer() {
-  const { site } = websiteInfo;
+const Footer = memo(() => {
+  const { site } = config;
+  const currentYear = new Date().getFullYear();
   
   return (
     <footer className="bg-surface border-t border-border-primary font-sans">
       <div className="max-w-5xl mx-auto px-4">
         <div className="py-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-text-secondary text-sm">
-            © {new Date().getFullYear()} {site.author}. All rights reserved.
+            © {currentYear} {site.author}. All rights reserved.
           </div>
           <div className="mt-4 md:mt-0">
             <a
@@ -16,6 +18,7 @@ function Footer() {
               className="text-text-accent text-sm transition-all duration-fast hover:opacity-75"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit GitHub repository"
             >
               GitHub
             </a>
@@ -24,6 +27,8 @@ function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+Footer.displayName = 'Footer';
 
 export default Footer;

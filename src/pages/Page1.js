@@ -1,97 +1,68 @@
-import websiteInfo from '../utils/websiteInfo';
+import { memo } from 'react';
+import Button from '../components/ui/Button';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import config from '../lib/config';
+import logo from '../assets/img/logo.png';
+import { FiMenu, FiX } from 'react-icons/fi';
 
-function Page1() {
-  const importFixerCode = `const fixer = new SmartImportFixer('./src');
+const buttonVariants = [
+  { variant: 'primary', label: 'Primary Button' },
+  { variant: 'outline', label: 'Outline Button' }
+];
 
-// Maps file locations
-scanDirectory(dir) {
-  // Scans recursively for .js and asset files
-  // Maps file paths to their locations
-}
+const Page1 = memo(() => (
+  <div className="min-h-screen">
+    <section className="section">
+      <div className="container">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h1 className="hero-title mb-6">Template Features</h1>
+          <p className="hero-desc">
+            Explore the components and features available in this template.
+          </p>
+        </div>
 
-// Calculates relative paths
-fixImports(filePath) {
-  // Updates import statements
-  // Handles JS/JSX imports
-  // Handles image imports
-  // Fixes JSON conversions
-}`;
-
-  return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto p-4 md:p-8 lg:p-12">
-        <h1 className="text-3xl font-semibold mb-8 text-text-primary">
-          Project Tools
-        </h1>
-
-        {/* Import Fixer Section */}
-        <div className="mb-12 p-8 bg-surface rounded-lg shadow-lg">
-          <h2 className="text-2xl font-medium mb-6 text-text-primary">
-            Import Fixer Tool
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl mb-4 text-text-accent">
-                What it does
-              </h3>
-              <ul className="space-y-2 text-text-secondary">
-                <li>• Automatically fixes import paths</li>
-                <li>• Handles JavaScript and asset files</li>
-                <li>• Updates relative paths based on file location</li>
-                <li>• Converts JSON to JS modules</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-xl mb-4 text-text-accent">
-                How to use
-              </h3>
-              <div className="text-text-secondary">
-                <p className="mb-4">1. Place in <code>scripts/fix-imports.js</code></p>
-                <p>2. Run:</p>
-                <pre className="p-3 mt-2 rounded bg-background">
-                  node scripts/fix-imports.js
-                </pre>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-xl mb-4 text-text-accent">
-              Code Overview
-            </h3>
-            <pre className="p-4 rounded-lg overflow-x-auto bg-background text-text-primary text-sm">
-              <code>{importFixerCode}</code>
-            </pre>
+        {/* Button Variants */}
+        <div className="card mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-white">Button Variants</h2>
+          <div className="flex flex-wrap gap-4 justify-center">
+            {buttonVariants.map(({ variant, label }) => (
+              <Button key={variant} variant={variant}>
+                {label}
+              </Button>
+            ))}
           </div>
         </div>
 
-        {/* Theme Tutorial Section */}
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="shadow-lg p-6 bg-surface rounded">
-            <h2 className="text-xl font-medium mb-4 text-text-primary">
-              Theme System
-            </h2>
-            <p className="leading-relaxed text-text-secondary">
-              RePlate uses a central theme configuration in websiteInfo.js. Import and destructure
-              the theme object to access colors, typography, spacing, and other design tokens.
+        {/* Card Examples */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="card">
+            <h3 className="card-title text-blue-400 mb-4">Hover Effect</h3>
+            <p className="card-desc">
+              Cards with smooth hover animations and transitions.
             </p>
           </div>
+          <div className="card">
+            <h3 className="card-title text-blue-400 mb-4">Modern Dark Theme</h3>
+            <p className="card-desc">
+              Components with a beautiful, modern dark palette.
+            </p>
+          </div>
+        </div>
 
-          <div className="shadow-lg p-6 bg-surface rounded">
-            <h2 className="text-xl font-medium mb-4 text-text-primary">
-              Project Structure
-            </h2>
-            <p className="leading-relaxed text-text-secondary">
-              Components are organized by feature and layout. Assets and styles have dedicated
-              directories. Utils contain shared code and configurations.
-            </p>
-          </div>
+        {/* CTA */}
+        <div className="card bg-gray-800 text-center">
+          <h2 className="text-2xl font-bold mb-4 text-white">Ready to use this template?</h2>
+          <p className="card-desc mb-6">
+            Start building your app with a clean, modern foundation.
+          </p>
+          <Button className="btn-outline" to="/">Back to Home</Button>
         </div>
       </div>
-    </div>
-  );
-}
+    </section>
+  </div>
+));
+
+Page1.displayName = 'Page1';
 
 export default Page1;
