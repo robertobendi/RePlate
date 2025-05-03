@@ -1,124 +1,103 @@
-import { memo } from 'react';
-import Button from '../components/ui/Button';
+import React, { memo } from 'react';
 import { FiZap, FiFeather, FiMoon, FiSmartphone } from 'react-icons/fi';
 import logo from '../assets/img/logo.png';
 
+// Simple feature data structure
 const features = [
   {
+    icon: <FiZap size={20} />,
     title: 'Modern Stack',
-    description: 'Built with React 18, Vite, and React Router v6 for lightning-fast performance',
-    icon: <FiZap className="text-accent text-3xl" />
+    description: 'React 18, Vite, and React Router v6'
   },
   {
+    icon: <FiFeather size={20} />,
     title: 'Tailwind CSS',
-    description: 'Utility-first CSS framework with custom animations and transitions',
-    icon: <FiFeather className="text-accent text-3xl" />
+    description: 'Utility-first styling with animations'
   },
   {
+    icon: <FiMoon size={20} />,
     title: 'Dark Theme',
-    description: 'Beautiful, modern dark palette for your next app',
-    icon: <FiMoon className="text-accent text-3xl" />
+    description: 'Beautiful modern dark palette'
   },
   {
-    title: 'Responsive Design',
-    description: 'Fully responsive layouts that work on all devices',
-    icon: <FiSmartphone className="text-accent text-3xl" />
+    icon: <FiSmartphone size={20} />,
+    title: 'Responsive',
+    description: 'Works on all devices and screen sizes'
   }
 ];
 
-const Home = memo(() => {
-  return (
-    <>
-      {/* Hero Section with improved visual design */}
-      <section className="relative overflow-hidden py-20 md:py-28 lg:py-32">
-        {/* Background elements */}
-        <div className="absolute inset-0 bg-hero-gradient opacity-30" />
-        <div className="absolute -top-48 -left-48 w-96 h-96 bg-accent opacity-10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-48 -right-48 w-96 h-96 bg-accent opacity-10 rounded-full blur-3xl" />
-        
-        {/* Content */}
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <img 
-              src={logo} 
-              alt="RePlate Logo" 
-              className="mx-auto h-20 w-auto mb-8 drop-shadow-xl animate-float" 
-            />
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-text to-accent">
-              Welcome to RePlate
-            </h1>
-            <p className="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto">
-              A modern React template with Tailwind CSS, featuring a beautiful dark theme and a powerful component system.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button className="bg-accent text-text hover:bg-accent/90 px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5">
-                Get Started
-              </Button>
-              <Button className="bg-surface text-text hover:bg-surface/90 px-6 py-3 rounded-lg font-medium transition-all">
-                View on GitHub
-              </Button>
-            </div>
+const Home = memo(() => (
+  <div>
+    {/* Hero - Simplified but impactful */}
+    <section className="py-16 md:py-24 relative overflow-hidden">
+      {/* Simple gradient background */}
+      <div className="absolute inset-0 bg-background">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-accent/20 via-transparent to-surface/30" />
+      </div>
+      
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-2xl mx-auto text-center">
+          <img src={logo} alt="RePlate Logo" className="h-16 mx-auto mb-6" />
+          <h1 className="text-4xl font-bold mb-4 text-text">
+            Welcome to <span className="text-accent">RePlate</span>
+          </h1>
+          <p className="text-muted mb-8">
+            A modern React template with Tailwind CSS and a beautiful dark theme.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a 
+              href="https://github.com/robertobendi/RePlate" 
+              className="px-5 py-2 bg-accent text-text rounded-lg hover:bg-accent/90 transition-colors"
+            >
+              Get Started
+            </a>
+            <a 
+              href="https://github.com/robertobendi/RePlate" 
+              className="px-5 py-2 bg-surface text-text rounded-lg hover:bg-surface/90 transition-colors"
+            >
+              GitHub
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Features Section with material design cards */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-text">
-            Powerful <span className="text-accent">Features</span>
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className="bg-card rounded-xl p-6 shadow-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
-              >
-                <div className="p-3 rounded-lg bg-surface/50 inline-block mb-4 group-hover:bg-accent/10 transition-colors">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-text group-hover:text-accent transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-muted">
-                  {feature.description}
-                </p>
+    {/* Features - Simplified grid layout */}
+    <section className="py-16 bg-card">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, i) => (
+            <div key={i} className="p-6 flex flex-col items-start">
+              <div className="p-2 bg-surface rounded-lg text-accent mb-4">
+                {feature.icon}
               </div>
-            ))}
-          </div>
+              <h3 className="text-lg font-semibold mb-2 text-text">{feature.title}</h3>
+              <p className="text-muted text-sm">{feature.description}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* CTA Section with more visual appeal */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-surface/50" />
-        <div className="absolute -left-24 w-64 h-64 bg-accent opacity-5 rounded-full blur-3xl" />
-        
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4 text-text">Ready to Get Started?</h2>
-            <p className="text-muted mb-8">
-              Clone the template and start building your next project with modern tools and best practices.
-            </p>
-            <Button className="bg-accent text-text hover:bg-accent/90 px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5">
-              View on GitHub
-            </Button>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-});
-
-// Add the following to your CSS or tailwind config for the animation
-// @keyframes float {
-//   0% { transform: translateY(0px); }
-//   50% { transform: translateY(-10px); }
-//   100% { transform: translateY(0px); }
-// }
-// .animate-float {
-//   animation: float 5s ease-in-out infinite;
-// }
+    {/* CTA - Minimal but effective */}
+    <section className="py-10 bg-background text-center">
+      <div className="container mx-auto px-4">
+        <p className="text-muted mb-4">Ready to build something amazing?</p>
+        <a 
+          href="https://github.com/robertobendi/RePlate"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 text-accent rounded-lg hover:bg-accent/20 transition-colors"
+        >
+          Start with RePlate
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </div>
+));
 
 Home.displayName = 'Home';
 
