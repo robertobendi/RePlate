@@ -6,27 +6,29 @@
 [![React Router](https://img.shields.io/badge/React_Router-6.22.0-CA4245?logo=react-router)](https://reactrouter.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A minimal, modern React.js template powered by Vite designed to jumpstart your web projects. RePlate provides a clean, well-organized foundation with essential features pre-configured, allowing you to focus on building your application rather than setting up boilerplate code.
+A minimal, clean React.js template powered by Vite. RePlate provides a simple starting point with just the essentials - no bloat, no unnecessary packages. Clone it and transform it into any webapp or website you want.
 
 ## ✨ Features
 
+- **Barebone & Simple**
+  - Minimal setup - just the essentials
+  - Easy to understand and customize
+  - No bloat, no unnecessary dependencies
+  - Perfect starting point for any project
+  
 - **Modern Tech Stack**
-  - React 18
+  - React 18 with hooks
   - Vite for lightning-fast builds
-  - React Router v6
-  - Tailwind CSS for styling
-  - PostCSS & Autoprefixer
-- **Pre-built Components**
-  - Responsive Navigation Bar
-  - Modern Footer
-  - 404 Not Found Page
-  - Contact Form
+  - React Router v7 for navigation
+  - Tailwind CSS with custom dark theme
+  
 - **Developer Experience**
-  - Clean project structure
-  - Modular component architecture
-  - Ready-to-use routing setup
-  - Responsive design out of the box
-  - Fast refresh with Vite
+  - ✅ Path aliases for clean imports (`@components`, `@lib`, etc.)
+  - ✅ Centralized configuration
+  - ✅ Simple navbar and footer components
+  - ✅ Reusable Button component
+  - ✅ Ready for Cursor AI / AI-assisted development
+  - ✅ Fast refresh with Vite
 
 ## 🚀 Quick Start
 
@@ -48,22 +50,35 @@ npm run dev
 
 ```
 RePlate/
-├── public/
+├── public/              # Static assets
 ├── src/
-│   ├── assets/
+│   ├── assets/         # Images and media files
 │   │   └── img/
-│   ├── components/
+│   ├── components/     # Reusable UI components
+│   │   └── ui/
+│   │       └── Button.js
+│   ├── layouts/        # Layout components (Navbar, Footer)
 │   │   ├── Navbar.js
 │   │   └── Footer.js
-│   ├── pages/
+│   ├── pages/          # Page components
 │   │   ├── Home.js
 │   │   └── Page1.js
-│   ├── utils/
-│   │   └── websiteInfo.js
-│   ├── App.jsx
-│   └── main.jsx
+│   ├── hooks/          # Custom React hooks
+│   │   └── useLocalStorage.js
+│   ├── lib/            # Configuration and utilities
+│   │   ├── config.js   # Site configuration
+│   │   ├── constants.js # App-wide constants
+│   │   ├── utils.js    # Utility functions
+│   │   ├── theme.js    # Theme definitions
+│   │   └── ThemeContext.js
+│   ├── styles/         # Global styles
+│   │   └── index.css
+│   ├── App.js          # Main app component
+│   └── index.js        # Entry point
+├── jsconfig.json       # Path aliases configuration
 ├── package.json
 ├── vite.config.js
+├── tailwind.config.js
 └── README.md
 ```
 
@@ -76,29 +91,55 @@ RePlate/
 
 ## 📝 Usage
 
-1. **Navigation**: Use React Router's `Link` component to navigate between pages
-   ```jsx
-   import { Link } from 'react-router-dom';
-   
-   <Link to="/page1">Go to Page 1</Link>
-   ```
+### Path Aliases
 
-2. **Styling**: Utilize Tailwind CSS classes for styling components
-   ```jsx
-   <div className="container mx-auto px-4">
-     <h1 className="text-2xl font-bold">Hello World</h1>
-   </div>
-   ```
+The template includes pre-configured path aliases for cleaner imports:
 
-3. **Vite Configuration**: Customize Vite settings in `vite.config.js`
-   ```js
-   export default {
-     plugins: [react()],
-     server: {
-       port: 3000,
-     }
-   }
-   ```
+```jsx
+import Button from '@components/ui/Button';
+import { useLocalStorage } from '@hooks/useLocalStorage';
+import config from '@lib/config';
+import logo from '@assets/img/logo.png';
+```
+
+### Navigation
+
+Use React Router's `Link` component for client-side navigation:
+
+```jsx
+import { Link } from 'react-router-dom';
+
+<Link to="/page1">Go to Page 1</Link>
+```
+
+### Styling
+
+Utilize Tailwind CSS with custom theme colors defined in `tailwind.config.js`:
+
+```jsx
+<div className="bg-background text-text">
+  <h1 className="text-accent">Styled with theme colors</h1>
+</div>
+```
+
+### Custom Hooks
+
+Use the included `useLocalStorage` hook for persistent state:
+
+```jsx
+import useLocalStorage from '@hooks/useLocalStorage';
+
+const [value, setValue] = useLocalStorage('key', 'defaultValue');
+```
+
+### Constants and Configuration
+
+Keep your code DRY by using centralized constants:
+
+```jsx
+import { LINKS, UI } from '@lib/constants';
+import config from '@lib/config';
+```
 
 ## ⚡ Why Vite?
 

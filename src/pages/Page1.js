@@ -1,65 +1,45 @@
 import { memo } from 'react';
-import Button from '../components/ui/Button';
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import config from '../lib/config';
-import logo from '../assets/img/logo.png';
-import { FiMenu, FiX } from 'react-icons/fi';
-
-const buttonVariants = [
-  { variant: 'primary', label: 'Primary Button' },
-  { variant: 'outline', label: 'Outline Button' }
-];
+import { Link } from 'react-router-dom';
+import Button from '@components/ui/Button';
 
 const Page1 = memo(() => (
-  <div className="min-h-screen">
-    <section className="section">
-      <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h1 className="hero-title mb-6">Template Features</h1>
-          <p className="hero-desc">
-            Explore the components and features available in this template.
-          </p>
-        </div>
+  <div className="min-h-screen py-20">
+    <div className="max-w-4xl mx-auto px-6">
+      <h1 className="text-4xl font-bold mb-4">Page 1</h1>
+      <p className="text-text/70 mb-8">
+        This is a sample page. Customize it however you want!
+      </p>
 
-        {/* Button Variants */}
-        <div className="card mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-white">Button Variants</h2>
-          <div className="flex flex-wrap gap-4 justify-center">
-            {buttonVariants.map(({ variant, label }) => (
-              <Button key={variant} variant={variant}>
-                {label}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Card Examples */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="card">
-            <h3 className="card-title text-blue-400 mb-4">Hover Effect</h3>
-            <p className="card-desc">
-              Cards with smooth hover animations and transitions.
-            </p>
-          </div>
-          <div className="card">
-            <h3 className="card-title text-blue-400 mb-4">Modern Dark Theme</h3>
-            <p className="card-desc">
-              Components with a beautiful, modern dark palette.
-            </p>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="card bg-gray-800 text-center">
-          <h2 className="text-2xl font-bold mb-4 text-white">Ready to use this template?</h2>
-          <p className="card-desc mb-6">
-            Start building your app with a clean, modern foundation.
-          </p>
-          <Button className="btn-outline" to="/">Back to Home</Button>
+      {/* Button Examples */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Buttons</h2>
+        <div className="flex flex-wrap gap-4">
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
         </div>
       </div>
-    </section>
+
+      {/* Simple Cards */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Cards</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-surface p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-2">Card Title</h3>
+            <p className="text-text/60">Simple card component with padding and rounded corners.</p>
+          </div>
+          <div className="bg-surface p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-2">Another Card</h3>
+            <p className="text-text/60">Easy to customize and extend.</p>
+          </div>
+        </div>
+      </div>
+
+      <Link to="/" className="text-accent hover:underline">
+        ← Back to Home
+      </Link>
+    </div>
   </div>
 ));
 

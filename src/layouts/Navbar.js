@@ -1,84 +1,65 @@
 import { Link } from "react-router-dom";
 import { useState, memo } from "react";
-import config from '../lib/config';
-import logo from '../assets/img/logo.png';
-
-const MenuItem = memo(({ path, label, onClick }) => (
-  <Link
-    to={path}
-    className="text-text-secondary text-sm hover:opacity-75 transition-all duration-fast"
-    onClick={onClick}
-  >
-    {label}
-  </Link>
-));
-
-const MobileMenu = memo(({ isOpen, menuItems, onClose }) => {
-  if (!isOpen) return null;
-  
-  return (
-    <div className="md:hidden absolute left-0 right-0 p-4 bg-surface border-b border-border-primary shadow-lg transition-all duration-DEFAULT">
-      <div className="flex flex-col space-y-3">
-        {menuItems.map((item) => (
-          <MenuItem
-            key={item.path}
-            path={item.path}
-            label={item.label}
-            onClick={onClose}
-          />
-        ))}
-      </div>
-    </div>
-  );
-});
-
-const MenuButton = memo(({ isOpen, onClick }) => (
-  <button
-    onClick={onClick}
-    className="md:hidden text-text-secondary hover:opacity-75 transition-all duration-fast"
-    aria-label="Toggle menu"
-  >
-    {isOpen ? (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    ) : (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-      </svg>
-    )}
-  </button>
-));
+import config from '@lib/config';
+import logo from '@assets/img/logo.png';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = config.navigation.menu;
 
   return (
-    <nav className="bg-background font-sans border-b border-border-primary transition-all duration-DEFAULT">
-      <div className="max-w-5xl mx-auto px-4 h-14">
-        <div className="flex justify-between items-center h-full">
-          <Link 
-            to="/" 
-            className="flex items-center space-x-2 hover:opacity-75 transition-all duration-fast"
-          >
-            <img src={logo} alt="Logo" className="h-6 w-auto" />
+    <nav className="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
+      <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <img src={logo} alt={config.site.name} className="h-8 w-auto" />
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <MenuItem key={item.path} {...item} />
+              <Link
+                key={item.path}
+                to={item.path}
+                className="text-text/80 hover:text-text transition-colors"
+              >
+                {item.label}
+              </Link>
             ))}
           </div>
 
-          <MenuButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-text"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
 
-        <MobileMenu 
-          isOpen={isOpen} 
-          menuItems={menuItems} 
-          onClose={() => setIsOpen(false)} 
-        />
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden mt-4 pb-4">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsOpen(false)}
+                className="block py-2 text-text/80 hover:text-text transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </nav>
   );

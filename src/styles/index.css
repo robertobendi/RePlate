@@ -4,58 +4,27 @@
 
 @layer base {
   html {
-    @apply antialiased;
+    @apply antialiased scroll-smooth;
   }
   body {
-    @apply bg-gray-900 text-white font-sans;
+    @apply bg-background text-text;
     min-height: 100vh;
   }
 }
 
-@layer components {
-  .container {
-    @apply max-w-5xl mx-auto px-4 sm:px-8;
-  }
-  .card {
-    @apply bg-gray-800 rounded-xl p-6 shadow-md border border-gray-700 transition;
-  }
-  .card-title {
-    @apply text-xl font-semibold mb-2 text-white;
-  }
-  .card-desc {
-    @apply text-gray-400 text-base;
-  }
-  .btn {
-    @apply inline-block px-5 py-2 rounded-lg font-semibold shadow-sm border border-blue-500 text-blue-400 bg-gray-800 hover:bg-blue-600 hover:text-white transition;
-  }
-  .btn-primary {
-    @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700;
-  }
-  .btn-outline {
-    @apply border-blue-500 text-blue-400 bg-gray-800 hover:bg-blue-600 hover:text-white;
-  }
-  .navbar {
-    @apply w-full bg-gray-800 text-white flex items-center justify-between px-6 py-4 shadow-md;
-  }
-  .logo {
-    @apply text-2xl font-bold text-blue-400 tracking-tight;
-  }
-  .section {
-    @apply py-12;
-  }
-  .hero {
-    @apply bg-gradient-to-br from-gray-800 via-gray-900 to-blue-900 text-white py-20 flex flex-col items-center justify-center;
-  }
-  .hero-title {
-    @apply text-4xl md:text-5xl font-bold mb-4 text-white;
-  }
-  .hero-desc {
-    @apply text-lg text-gray-400 mb-8 max-w-2xl text-center;
-  }
-}
-
 @layer utilities {
-  .animate-spin-slow {
-    animation: spin 3s linear infinite;
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 } 

@@ -1,16 +1,11 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { themes } from './theme';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useLocalStorage('theme', 'light');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [theme, setTheme] = useLocalStorage('theme', 'dark');
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -22,11 +17,6 @@ export function ThemeProvider({ children }) {
     toggleTheme,
     themeClasses: themes[theme],
   };
-
-  // Prevent flash of wrong theme
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <ThemeContext.Provider value={value}>

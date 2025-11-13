@@ -1,9 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { ERRORS } from '@lib/constants';
 
+/**
+ * Custom hook for managing localStorage with React state
+ * @param {string} key - The localStorage key
+ * @param {*} initialValue - The initial value if key doesn't exist
+ * @returns {[*, function]} - [storedValue, setValue]
+ */
 function useLocalStorage(key, initialValue) {
-  // Get from local storage then
-  // parse stored json or return initialValue
-  const readValue = () => {
+  // Create a stable readValue function using useCallback
+  const readValue = useCallback(() => {
     if (typeof window === 'undefined') {
       return initialValue;
     }
@@ -12,14 +18,15 @@ function useLocalStorage(key, initialValue) {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.warn(`Error reading localStorage key "${key}":`, error);
+      console.warn(`${ERRORS.STORAGE_READ} "${key}":`, error);
       return initialValue;
     }
-  };
+  }, [key, initialValue]);
 
   const [storedValue, setStoredValue] = useState(readValue);
 
-  const setValue = (value) => {
+  // Wrap setValue to avoid dependency issues
+  const setValue = useCallback((value) => {
     try {
       // Allow value to be a function so we have same API as useState
       const valueToStore = value instanceof Function ? value(storedValue) : value;
@@ -28,24 +35,27 @@ function useLocalStorage(key, initialValue) {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {
-      console.warn(`Error setting localStorage key "${key}":`, error);
+      console.warn(`${ERRORS.STORAGE_WRITE} "${key}":`, error);
     }
-  };
+  }, [key, storedValue]);
 
+  // Listen for storage changes from other tabs/windows
   useEffect(() => {
-    setStoredValue(readValue());
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setStoredValue(readValue());
+    const handleStorageChange = (e) => {
+      if (e.key === key && e.newValue !== null) {
+        try {
+          setStoredValue(JSON.parse(e.newValue));
+        } catch (error) {
+          console.warn(`${ERRORS.STORAGE_READ} "${key}":`, error);
+        }
+      }
     };
 
     window.addEventListener('storage', handleStorageChange);
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
-  }, []);
+  }, [key]);
 
   return [storedValue, setValue];
 }

@@ -19,10 +19,16 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // Add any aliases you might have in jsconfig/tsconfig
-      // '@': '/src',
+      '@': '/src',
+      '@components': '/src/components',
+      '@layouts': '/src/layouts',
+      '@pages': '/src/pages',
+      '@hooks': '/src/hooks',
+      '@lib': '/src/lib',
+      '@assets': '/src/assets',
+      '@styles': '/src/styles',
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx'] // Add this line to prioritize extensions
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   // Add the following configuration to handle .js files as JSX
   esbuild: {

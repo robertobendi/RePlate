@@ -1,11 +1,11 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "@layouts/Navbar";
+import Footer from "@layouts/Footer";
 
 // Lazy load pages
-const Home = lazy(() => import("./pages/Home"));
-const Page1 = lazy(() => import("./pages/Page1"));
+const Home = lazy(() => import("@pages/Home"));
+const Page1 = lazy(() => import("@pages/Page1"));
 
 // Routes configuration
 const routes = [
@@ -16,7 +16,12 @@ const routes = [
 // Loading component
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-[60vh]">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+    <div 
+      className="animate-spin rounded-full border-t-2 border-b-2 border-accent" 
+      style={{ height: '48px', width: '48px' }}
+      aria-label="Loading..."
+      role="status"
+    />
   </div>
 );
 
@@ -32,6 +37,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    // Log to error reporting service in production
     console.error("Page error:", error, errorInfo);
   }
 
@@ -41,10 +47,13 @@ class ErrorBoundary extends React.Component {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center p-6 max-w-md bg-card rounded-xl shadow-card">
             <h2 className="text-2xl font-bold text-red-500 mb-4">Something went wrong</h2>
-            <p className="mb-6 text-muted">The page couldn't be loaded properly.</p>
+            <p className="mb-6 text-muted">
+              The page couldn't be loaded properly.
+            </p>
             <button
               onClick={() => window.location.reload()}
               className="px-4 py-2 bg-accent text-text rounded-lg hover:bg-accent/80 transition-colors"
+              aria-label="Reload page"
             >
               Reload Page
             </button>
@@ -70,10 +79,10 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-text font-sans">
+    <div className="min-h-screen flex flex-col bg-background text-text">
       <Navbar />
       <ScrollToTop />
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         <ErrorBoundary>
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
